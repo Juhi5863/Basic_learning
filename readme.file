@@ -1,0 +1,25 @@
+minikube permission
+sudo chmod 644 /home/master/.minikube/profiles/minikube/client.key
+sudo chmod 600 /home/master/.minikube/profiles/minikube/client.key
+sudo chown jenkins:jenkins  /home/master/.minikube/profiles/minikube/client.key
+
+locally minikube run
+minikube stop
+minikube delete
+minikube start
+
+running the ansible
+ansible-playbook -i inventory.ini apache.yml
+
+docker credential for imagepull
+kubectl create secret docker-registry dockerhub-secret   --docker-username=juhichoudhary    --docker-password=Welcome@123456     --docker-email=juhichoudhary5863@gmail.com
+
+
+git pushing
+git remote -v
+git remote delete origin 
+git rempte add origin url
+git remote set-url origin git@github.com:Juhi5863/practice1.git
+git push origin main
+
+
