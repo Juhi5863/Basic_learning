@@ -41,3 +41,195 @@ docker swarm init
 docker node ls
 
 
+q1. Python Scripting
+
+
+
+
+Save the content of the below into a file called /tmp/timestamp.log
+
+2025-04-04 22:01:15,123 - INFO - Application started successfully. 2025-04-04 22:01:15,567 - DEBUG - Initializing database connection. 2025-04-04 22:01:16,234 - INFO - User 'Alice' logged in. 2025-04-04 22:01:17,890 - ERROR - Failed to connect to external service. Retrying in 5 seconds. Error: Connection refused. 2025-04-04 22:01:22,956 - WARNING - High CPU usage detected: 95%. 2025-04-04 22:01:25,345 - ERROR - Database query failed. Error: Table 'users' not found. 2025-04-04 22:01:28,789 - INFO - User 'Bob' logged in. 2025-04-04 22:01:31,456 - DEBUG - Processing request for resource '/data'. 2025-04-04 22:01:33,012 - ERROR - File not found. Path: /tmp/important_file.txt. 2025-04-04 22:01:36,543 - INFO - Application shutting down. 2025-04-04 22:01:37,098 - WARNING - Unsaved data might be lost. 2025-04-04 22:01:38,675 - ERROR - Exception during shutdown. Error: 'NoneType' object has no attribute 'close'.
+
+
+
+
+
+
+
+Write a Python script to:
+
+- Parse a ‘/tmp/timestamp.log` file.
+
+- Extract all timestamps and error messages.
+
+- Store the output in a JSON format in a file c
+
+
+
+
+Provide one line to install necessary modules using pip.
+
+
+
+
+Check in all files including images and code into question2 folder in devops-commontrack-mocktest repository
+
+Q4.  Automating webserver Deployment and Configuration Using Ansible Playbooks and Roles.
+
+
+
+
+Requirement 
+
+
+
+
+Ansible control node (e.g., Ubuntu or CentOS)
+At least 2 Linux servers (Ubuntu preferred)
+SSH access from control node to all servers
+
+ Create a directory structure for your Ansible project including:
+
+
+
+
+Configuration file
+Inventory file
+Role structure
+
+Step 2 Create and configure an ansible.cfg file to use:
+
+
+
+
+./inventory/hosts as the inventory
+./roles as the roles path
+
+Step 3 Create a static inventory under inventory/hosts for two target nodes under the group [webservers]
+
+Use ansible_host and ansible_user. Also, define a group variable env=staging
+
+Step 4. Create an Ansible role named webserver using ansible-galaxy init.
+
+Step 5 . In roles/webserver/tasks/main.yml, add tasks to:
+
+
+
+
+Install Apache
+Copy a dynamic homepage using a Jinja2 template
+Start and enable Apache service
+
+Add Handler
+
+roles/webserver/handlers/main.yml
+
+- name: Restart Apache
+
+ service:
+
+   name: apache2
+
+   state: restarted
+
+Step 6 Create a Jinja2 template file named index.html.j2 that displays:
+
+
+
+
+Hostname using {{ inventory_hostname }}
+Environment using {{ env }}
+
+Step 7 Create a main playbook file site.yml to apply the webserver role on all webservers with become: yes.
+
+·      Ping all nodes in the webservers group
+
+·      Install curl using the apt module
+
+·      Custom index.html is visible on each server via web browser or curl
+
+Step 8 Show how to run only the tasks tagged with apache.
+
+Step 9 Add a condition to only deploy the custom homepage if the environment is staging.
+
+Step 10 Modify site.yml to include vault:
+
+yaml
+
+vars_files:
+
+ - group_vars/all/vault.yml
+
+Run with:
+
+ansible-playbook site.yml --ask-vault-pass
+
+·      Apache2 installed on all web hosts
+
+·      Each server shows a customized web page at http://<host-ip>
+
+
+
+
+Sample Html code you can use
+
+
+
+
+﻿<html>
+
+ <body>
+
+   <h1>Welcome to {{ inventory_hostname }} in {{ env }} environment!</h1>
+
+ </body>
+
+</html>
+
+Q5. Q3. Creating and Using a Shared Library in Jenkins to Standardize Build.
+
+
+
+
+You are a DevOps engineer in a company managing multiple services. Each team writes their own Jenkinsfile, but all of them share a common set of actions:
+
+
+
+
+Cloning the Git repository
+Running unit tests
+Deploying to a given environment
+
+Instead of duplicating this logic in each Jenkinsfile, you’ve been asked to create a Jenkins Shared Library to centralize and standardize
+
+Step 1: Create a New Git Repo for the Shared Library
+
+Step 2: Add Pipeline Logic in vars/ Folder example (commonBuild.groovy)
+
+Groovy Sample code
+
+def call() {
+
+   stage('Checkout') {
+
+       checkout scm
+
+   }
+
+   stage('Unit Tests') {
+
+       echo 'Running unit tests...'
+
+       sh './gradlew test'
+
+   }
+
+}
+
+Step 3 register the Shared Library in Jenkins
+
+Step 4: Use the Shared Library in a Jenkinsfile
+
+Step 5 Build it
+
+ 
