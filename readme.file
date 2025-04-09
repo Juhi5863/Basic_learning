@@ -22,4 +22,22 @@ git rempte add origin url
 git remote set-url origin git@github.com:Juhi5863/practice1.git
 git push origin main
 
+DOcker permission in docker
+sudo usermod -aG docker jenkins
+sudo systemctl restart jenkins
+
+docker build -t juhichoudhary/name .
+docker push juhichoudhary/name
+
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+kubectl get pods
+kubectl get svc
+kubectl expose deployment helloworld-deployment --type=NodePort --port=8081
+minikube service helloworld-deployment --url
+
+docker swarm
+docker swarm init
+docker node ls
+
 
