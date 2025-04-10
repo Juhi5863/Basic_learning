@@ -95,6 +95,9 @@ You are part of a DevOps team working on a Java-based microservice. The applicat
 5.     Deploys the application to a Kubernetes cluster using YAML manifests.
 6.     Implements a Git branching strategy to manage different types of deployment work.
   I.          Branching Strategy and Execution Rules
+branching strategy and execution rules 
+branch type - frature/*(feature branch), develop(development branch) 
+stages of Execute - Build, Test, SInarQube and for Develop (Development Branch) - Build, Test, SonarQube, Docker Build, Push to Registry
   II.           Webhook Integration
   a.     Configure a GitHub webhook that triggers Jenkins when:
     i.     A commit is pushed to any branch
