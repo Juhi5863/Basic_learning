@@ -1,0 +1,23 @@
+import csv
+data = [
+    {"name": "John", "salary": 50000},
+    {"name": "Alice", "salary": 60000},
+    {"name": "Bob", "salary": 70000},
+    {"name": "Charlie", "salary": 55000}
+]
+with open('salaries.csv', mode='w', newline='') as file:
+    fieldnames = ['name', 'salary']
+    writer = csv.DictWriter(file, fieldnames)
+    writer.writeheader()  
+    writer.writerows(data)
+print(f"'salaries.csv' created and data written successfully.")
+with open('salaries.csv', newline='') as file:
+    read = csv.DictReader(file)
+    salaries = [float(row['salary']) for row in read]
+    avg_salary = sum(salaries) / len(salaries)
+    max_salary = max(salaries)
+    min_salary = min(salaries)
+    print(f"salary stats:")
+    print(f"Maximum salary : {max_salary}")
+    print(f"Minimum salary : {min_salary}")
+    print(f"Average salary : {avg_salary}")
