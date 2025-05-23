@@ -1,0 +1,12 @@
+import os
+try:
+    cd = os.getcwd()
+    items = os.listdir(cd)
+    for item in items:
+        print(item)
+    
+
+except FileNotFoundError:
+    print("Directory not found")
+except PermissionError:
+    print("Permission denied")
