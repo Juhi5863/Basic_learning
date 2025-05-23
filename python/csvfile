@@ -1,0 +1,32 @@
+# Author: [Your Name]
+# Name: Write CSV Data
+# Description: Writes a list of user dictionaries to a CSV file with headers.
+
+import csv
+
+# Sample user data
+users = [
+    {"name": "Alice", "age": 30, "city": "New York"},
+    {"name": "Bob", "age": 25, "city": "Los Angeles"},
+    {"name": "Charlie", "age": 35, "city": "Chicago"}
+]
+
+# CSV file writing
+try:
+    with open("users.csv", "w", newline="") as csvfile:
+        # Create a writer object with headers
+        fieldnames = ["name", "age", "city"]
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+        # Write the header row
+        writer.writeheader()
+
+        # Write each user row
+        writer.writerows(users)
+
+    print("Successfully wrote to 'users.csv'")
+
+except IOError as e:
+    print(f"Error writing to CSV file: {e}")
+except Exception as e:
+    print(f"An unexpected error occurred: {e}")
