@@ -1,0 +1,15 @@
+import os
+directory = "my_data_filder"
+path = os.path.join(directory, "notes.txt")
+
+try:
+    os.makedirs(directory, exist_ok=True)
+    with open(path, "w") as file:
+        file.write("This is a notes.")
+    print("succesfully")
+
+except IOError as e:
+    print(f"error in file : {e}")
+
+except Exception as e:
+    print(f"unexpected error: {e}")
