@@ -1,0 +1,10 @@
+try:
+    with open("my_first_file.txt", 'w') as file:
+        file.write('Hello, python file handling!')
+    print("SUccessfully wrote to 'my_first_file.txt")
+
+except IOError as e:
+    print(f"Error writing to file: {e}")
+
+except Exception as e:
+    print(f"An unexpected error occurred: {e}")
